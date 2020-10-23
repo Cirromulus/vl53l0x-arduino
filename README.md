@@ -1,23 +1,24 @@
 # VL53L0X library for Arduino
 
-Version: 1.3.0<br>
-Release date: 2020 Sep 24<br>
+Version: 1.4.0<br>
+Release date: 2020 Oct 25<br>
 [![Build Status](https://travis-ci.org/pololu/vl53l0x-arduino.svg?branch=master)](https://travis-ci.org/pololu/vl53l0x-arduino)<br>
-[www.pololu.com](https://www.pololu.com/)
 
 ## Summary
 
-This is a library for the Arduino IDE that helps interface with ST's [VL53L0X time-of-flight distance sensor](https://www.pololu.com/product/2490). The library makes it simple to configure the sensor and read range data from it via I&sup2;C.
+This is a fork of the original library for the Arduino IDE that helps interface with ST's VL53L0X time-of-flight distance sensor.
+The library makes it simple to configure the sensor and read range data from it via I&sup2;C.
+The fork fixes the Timeout-bug and corrects the timing budged calculation.
 
 ## Supported platforms
 
-This library is designed to work with the Arduino IDE versions 1.6.x or later; we have not tested it with earlier versions.  This library should support any Arduino-compatible board, including the [Pololu A-Star 32U4 controllers](https://www.pololu.com/category/149/a-star-programmable-controllers).
+This library is designed to work with the Arduino IDE versions 1.6.x or later; we have not tested it with earlier versions.  This library should support any Arduino-compatible board.
 
 ## Getting started
 
 ### Hardware
 
-A [VL53L0X carrier](https://www.pololu.com/product/2490) can be purchased from Pololu's website.  Before continuing, careful reading of the [product page](https://www.pololu.com/product/2490) as well as the VL53L0X datasheet is recommended.
+Before continuing, careful reading of the [datasheet](https://www.st.com/en/imaging-and-photonics-solutions/vl53l0x.html) is recommended.
 
 Make the following connections between the Arduino and the VL53L0X board:
 
@@ -45,6 +46,8 @@ Make the following connections between the Arduino and the VL53L0X board:
 
 ### Software
 
+A gerneral recommendation for [PlatformIO](https://platformio.org/) is given.
+
 If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install this library:
 
 1. In the Arduino IDE, open the "Sketch" menu, select "Include Library", then "Manage Libraries...".
@@ -54,7 +57,7 @@ If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://w
 
 If this does not work, you can manually install the library:
 
-1. Download the [latest release archive from GitHub](https://github.com/pololu/vl53l0x-arduino/releases) and decompress it.
+1. Download the [latest release archive from GitHub](https://github.com/Cirromulus/vl53l0x-arduino/releases) and decompress it.
 2. Rename the folder "vl53l0x-arduino-master" to "VL53L0X".
 3. Move the "VL53L0X" folder into the "libraries" directory inside your Arduino sketchbook directory.  You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
 4. After installing the library, restart the Arduino IDE.
@@ -64,6 +67,8 @@ If this does not work, you can manually install the library:
 Several example sketches are available that show how to use the library. You can access them from the Arduino IDE by opening the "File" menu, selecting "Examples", and then selecting "VL53L0X". If you cannot find these examples, the library was probably installed incorrectly and you should retry the installation instructions above.
 
 ## ST's VL53L0X API and this library
+
+The original version from pololu can be found [here](https://github.com/pololu/vl53l0x-arduino).
 
 Most of the functionality of this library is based on the [VL53L0X API](http://www.st.com/content/st_com/en/products/embedded-software/proximity-sensors-software/stsw-img005.html) provided by ST (STSW-IMG005), and some of the explanatory comments in the code are quoted or paraphrased from the API source code, API user manual (UM2039), and the VL53L0X datasheet. For more explanation about the library code and how it was derived from the API, see the comments in VL53L0X.cpp.
 
@@ -165,6 +170,7 @@ This library is intended to provide a quicker and easier way to get started usin
 
 ## Version history
 
+* 1.4.0 (2020 Oct 25): Fork for fix of timeout-bug and calculation of ranging timing budget.
 * 1.3.0 (2020 Sep 24): Added support for alternative I&sup2;C buses (thanks KurtE).
 * 1.2.0 (2019 Oct 31): Incorporated some updates from ST's VL53L0X API version 1.0.2 (this library was originally based on API version 1.0.0).
 * 1.1.0 (2019 Oct 29): Improved `init()` and added a check for its return value in examples; fixed a few other issues.
